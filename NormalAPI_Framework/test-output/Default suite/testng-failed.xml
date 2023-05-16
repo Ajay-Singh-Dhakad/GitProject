@@ -5,7 +5,8 @@
     <classes>
       <class name="Test_Cases.Github_Project">
         <methods>
-          <include name="replaceAllrepoTopics"/>
+          <include name="getRepo"/>
+          <include name="createRepo"/>
         </methods>
       </class> <!-- Test_Cases.Github_Project -->
     </classes>

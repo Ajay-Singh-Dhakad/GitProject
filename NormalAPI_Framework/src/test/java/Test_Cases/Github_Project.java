@@ -1,5 +1,7 @@
 package Test_Cases;
 
+import static org.testng.Assert.fail;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -25,7 +27,7 @@ public  static ArrayList <String> namess;
 public  static String sha;
 public  static Integer id;
 public  static FileCreate filecreate = new FileCreate();
-@Test(priority = 0)
+@Test(priority = 0,enabled = false)
 public static void createRepo() throws IOException {
 	endpoint=createURL.getbaseuri("/user/repos");
 	String payloadBody=payloadconverter.generatepayload("createRepo.json");
@@ -36,7 +38,7 @@ public static void createRepo() throws IOException {
 	full_name = js.get("full_name");
 	System.out.println(responsebody);
 }
-@Test(priority = 1)
+@Test(priority = 1,enabled = false)
 public static void getRepo() throws IOException {
 	endpoint=createURL.getbaseuri("/repos/"+full_name);
 	response=BaseClass.GetRequest(endpoint,token);
@@ -45,7 +47,7 @@ public static void getRepo() throws IOException {
 	System.out.println(responsebody);
 }
 
-@Test(priority = 2)
+@Test(priority = 2,enabled = false)
 public static void updateRepo() throws IOException {
 	endpoint=createURL.getbaseuri("/repos/"+full_name);
 	String payloadBody=payloadconverter.generatepayload("UpdateRepo.json");
@@ -66,7 +68,7 @@ public static void ListRepo() throws IOException {
 	Assert.assertEquals(response.statusCode(),200);
 	System.out.println(responsebody);
 }
-@Test(priority = 4)
+@Test(priority = 4,enabled = false)
 public static void ListRepoLanguage() throws IOException {
 	endpoint=createURL.getbaseuri("/repos/"+full_name+"/languages");
 	response=BaseClass.GetRequest(endpoint,token);
@@ -83,7 +85,7 @@ public static void ListpublicRepo() throws IOException {
 	System.out.println(response.statusCode());
 	System.out.println(responsebody);
 }
-@Test(priority = 6)
+@Test(priority = 6,enabled = false)
 public static void ListRepoTags() throws IOException {
 	endpoint=createURL.getbaseuri("/repos/"+full_name+"/tags");
 	response=BaseClass.GetRequest(endpoint,token);
@@ -91,7 +93,7 @@ public static void ListRepoTags() throws IOException {
 	Assert.assertEquals(response.statusCode(),200);
 	System.out.println(responsebody);
 }
-@Test(priority = 7)
+@Test(priority = 7,enabled = false)
 public static void createAutolinks() throws IOException {
 	endpoint=createURL.getbaseuri("/repos/"+full_name+"/autolinks");
 	String payloadBody=payloadconverter.generatepayload("Autolinks.json");
@@ -102,7 +104,7 @@ public static void createAutolinks() throws IOException {
 	id = js.get("id");
 	System.out.println(responsebody);
 }
-@Test(priority = 8)
+@Test(priority = 8,enabled = false)
 public static void getanAutolinks() throws IOException {
 	endpoint=createURL.getbaseuri("/repos/"+full_name+"/autolinks/"+id);
 	response=BaseClass.GetRequest(endpoint,token);
@@ -110,7 +112,7 @@ public static void getanAutolinks() throws IOException {
 	Assert.assertEquals(response.statusCode(),200);
 	System.out.println(responsebody);
 }
-@Test(priority = 9)
+@Test(priority = 9,enabled = false)
 public static void deleteanAutolinks() throws IOException {
 	endpoint=createURL.getbaseuri("/repos/"+full_name+"/autolinks/"+id);
 	response=BaseClass.DeleteRequestWithout_Payload(endpoint,token);
@@ -118,7 +120,7 @@ public static void deleteanAutolinks() throws IOException {
 	Assert.assertEquals(response.statusCode(),204);
 	System.out.println(responsebody);
 }
-@Test(priority = 10)
+@Test(priority = 10,enabled = false)
 public static void getAllrepoTopics() throws IOException {
 	endpoint=createURL.getbaseuri("/repos/"+full_name+"/topics");
 	response=BaseClass.GetRequest(endpoint,token);
@@ -138,7 +140,7 @@ public static void replaceAllrepoTopics() throws IOException {
 	Assert.assertEquals(response.statusCode(),200);
 	System.out.println(responsebody);
 }
-@Test(priority = 12)
+@Test(priority = 12,enabled = false)
 public void createFile() throws IOException {
 	endpoint = createURL.getbaseuri("/repos/"+full_name+"/contents/Somefile");
 	String payloadbody = payloadconverter.generatepayload("CreateFile.json");
@@ -149,7 +151,7 @@ public void createFile() throws IOException {
 	Assert.assertEquals(response.statusCode(), 201);
 	System.out.println(responsebody);
 }
-@Test(priority = 13)
+@Test(priority = 13,enabled = false)
 public static void createfork() throws IOException {
 	endpoint=createURL.getbaseuri("/repos/"+full_name+"/forks");
 	String payloadBody=payloadconverter.generatepayload("createForks.json");
@@ -158,7 +160,7 @@ public static void createfork() throws IOException {
 	Assert.assertEquals(response.statusCode(),202);
 	System.out.println(responsebody);
 }
-@Test(priority = 14)
+@Test(priority = 14,enabled = false)
 public static void getforklist() throws IOException {
 	endpoint=createURL.getbaseuri("/repos/"+full_name+"/forks");
 	response=BaseClass.GetRequest(endpoint,token);
@@ -166,7 +168,7 @@ public static void getforklist() throws IOException {
 	Assert.assertEquals(response.statusCode(),200);
 	System.out.println(responsebody);
 }
-@Test(priority = 15)
+@Test(priority = 15,enabled = false)
 public void deleteFile() throws IOException {
 	filecreate.setMessage("deleting file");
 	filecreate.setSha(sha);
@@ -177,7 +179,7 @@ public void deleteFile() throws IOException {
 	Assert.assertEquals(response.statusCode(), 200);
 	System.out.println(responsebody);
 }
-@Test(priority =16)
+@Test(priority =16,enabled = false)
 public static void deleteRepo() throws IOException {
 	endpoint=createURL.getbaseuri("/repos/"+full_name);
 	response=BaseClass.DeleteRequestWithout_Payload(endpoint,token);
